@@ -26,18 +26,30 @@ class CharacterDetail extends Component {
     }
 
     return (
-      <div>        
-        <h1 style={{color: "pink"}}>Detalhes do personagem</h1>      
-        <h3>{this.state.name}</h3>   
-        <ul>
-          { this.state.series.items.map(serie => (
-            <li key={serie.resourceURI}>
-              {serie.name}              
-              {/* <img src={`${todo.thumbnail.path}.${todo.thumbnail.extension}`} />              */}
-            </li>
-          )) }
-        </ul>
-        <Link to={'/' }>Voltar</Link> 
+      <div>      
+        <div className="container-form">
+          <h2>Detalhes do personagem</h2>
+          <div className="row">
+            <div className="col-25">
+              <img src={`${this.state.thumbnail.path}.${this.state.thumbnail.extension}`} alt="Avatar" 
+                style={{width:"100%"}} />
+                <h3>{this.state.name}</h3> 
+            </div>
+            <div className="col-75">  
+              <h3>Séries</h3>
+              <ul>
+                { this.state.series.items.map(serie => (
+                  <li key={serie.resourceURI}>
+                    {serie.name}              
+                  </li>
+                )) }
+              </ul>
+            </div>
+          </div>         
+          <div style={{textAlign: "right"}}>
+            <Link to={'/' }><button className="button-one">Voltar</button></Link>             
+          </div>
+        </div>
       </div>
     );
   }
@@ -49,23 +61,3 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, null)(CharacterDetail);
 
-/*
-https://github.com/alexnmb84/react-teste.git
-
-…or create a new repository on the command line
-echo "# react-teste" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git remote add origin https://github.com/alexnmb84/react-teste.git
-git push -u origin master
-
-git remote set-url origin git@github.com:alexnmb84/react-teste.git
-
-…or push an existing repository from the command line
-git remote add origin https://github.com/alexnmb84/react-teste.git
-git push -u origin 
-
-…or import code from another repository
-You can initialize this repository with code from a Subversion, Mercurial, or TFS project.
-*/

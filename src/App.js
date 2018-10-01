@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import marvel from './images/marvel-logo.png';
 import './App.css';
 import { connect } from 'react-redux';
 import Notification from './components/Notification';
@@ -16,8 +16,7 @@ class App extends Component {
     return (
         <div className="App">
           <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title">Welcome to React</h1>
+            <img src={marvel} className="App-logo" alt="logo" />            
           </header>     
           <ListCharacters />
           {this.props.notification.isShow && <Notification />} 

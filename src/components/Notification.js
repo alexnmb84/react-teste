@@ -16,7 +16,7 @@ onClose = ()  => {
 
 render() {
     return (
-      <div onClick={this.onClose} style={{background: SUCCESS, position: "fixed", bottom: "0", right: "0", margin: "20px", padding: "20px"}}>       
+      <div onClick={this.onClose} className="notification" style={{background: this.props.notification.type}}>       
         <h3 style={{color: "#fff"}}> {this.props.notification.msn} </h3>        
       </div>
     );

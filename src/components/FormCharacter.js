@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as charactersActions from '../actions/charactersActions';
+import { SUCCESS } from '../constants/notificationType';
 
 class FormCharacter extends Component {
 
@@ -33,7 +34,7 @@ class FormCharacter extends Component {
   
   onSave = ()  => {
     this.props.updateCharacter(this.state);
-    this.props.showNotiofication({isShow: true, msn: "Salvo com sucesso!"});
+    this.props.showNotiofication({isShow: true, msn: "Salvo com sucesso!", type: SUCCESS});
     this.props.history.push(`/`);
   };
 
@@ -44,32 +45,38 @@ class FormCharacter extends Component {
     }
 
     return (
-      <div>          
-        <h1 style={{color: "green"}}>Form do personagem</h1>    
-        <h3>{this.props.match.params.characterId}</h3>        
-              
-        <label>First Name: </label>
-        <input type="text" value={this.state.name} onChange={this.handleNameChange}  />
-        <br />
-        <label>First Descrição: </label>
-        <textarea value={this.state.description} onChange={this.handleDescriptionChange}  />
-        <br />       
-        
-        <button onClick={this.onSave}>Salvar</button>
-        <Link to={'/' }>Voltar</Link> 
+      <div>                    
+
+        <div className="container-form">
+          <h2>Personagem</h2>
+          <div className="row">
+            <div className="col-25">
+              <img src={`${this.state.thumbnail.path}.${this.state.thumbnail.extension}`} alt="Avatar" 
+                style={{width:"100%"}} />
+            </div>
+            <div className="col-75">          
+              <label>Nome do personagem</label>           
+              <input type="text" value={this.state.name} onChange={this.handleNameChange}  />
+              <label>Descrição</label>
+              <textarea placeholder="Escreva uma descrição.." style={{height: "200px"}} value={this.state.description} onChange={this.handleDescriptionChange}  />
+            </div>
+          </div>         
+          <div style={{textAlign: "right"}}>
+            <Link to={'/' }><button className="button-one">voltar</button></Link> 
+             <button onClick={this.onSave} className="button-one">Salvar</button>
+          </div>
+        </div>
         
       </div>
     );
   }
 }
 
-//variavel que será ouvida pelo componente
 const mapStateToProps = state => ({
   characters: state.characters,
   notification: state.notification,
 });
 
-//repassa as actions para ser acessado na this.prop
 const mapDispatchToProps = dispatch =>
   bindActionCreators(charactersActions, dispatch);
 
