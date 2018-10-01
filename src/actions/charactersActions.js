@@ -12,9 +12,3 @@ export function showNotiofication(param) {
     }
 }
 
-export function hideNotiofication(param) {
-    return {
-      type: 'HIDE_NOTIFICATION',
-      param,
-    }
-}
